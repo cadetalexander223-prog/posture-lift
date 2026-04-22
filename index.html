@@ -43,10 +43,11 @@
     background: var(--white);
     border-bottom: 1px solid var(--faint);
     padding: 0 2rem;
-    display: flex; align-items: center; justify-content: space-between;
+    display: flex; align-items: center; justify-content: center;
     height: 60px;
+    position: relative;
   }
-  .nav-logo { height: 32px; display: block; }
+  .nav-logo { height: 32px; display: block; position: absolute; left: 2rem; }
   .nav-tag {
     font-size: 11px; font-weight: 400;
     letter-spacing: 0.1em; text-transform: uppercase;
@@ -58,13 +59,14 @@
     background: var(--charcoal); color: var(--white);
     padding: 9px 20px; border-radius: 8px;
     text-decoration: none; transition: background 0.2s, transform 0.15s;
+    position: absolute; right: 2rem;
   }
   .nav-cta:hover { background: var(--blush-mid); transform: translateY(-1px); }
 
   /* ── HERO ── */
   .hero {
-    max-width: 760px; margin: 0 auto;
-    padding: 5rem 2rem 3.5rem;
+    max-width: 860px; margin: 0 auto;
+    padding: 5rem 3rem 3.5rem;
     text-align: center;
     animation: fadeUp 0.7s ease both;
   }
@@ -119,8 +121,8 @@
 
   /* ── ARTICLE ── */
   .article {
-    max-width: 660px; margin: 0 auto;
-    padding: 3.5rem 2rem 5rem;
+    max-width: 860px; margin: 0 auto;
+    padding: 3.5rem 3rem 5rem;
   }
   .article p {
     margin-bottom: 1.3rem; font-size: 17px;
@@ -189,47 +191,51 @@
   .numbered-section { margin: 2rem 0; display: flex; flex-direction: column; }
   .number-item {
     display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 0 1.75rem;
-    padding: 1.75rem 0;
+    grid-template-columns: 240px 1fr;
+    gap: 0 2.5rem;
+    padding: 2.5rem 0;
     border-bottom: 1px solid var(--faint);
     align-items: center;
   }
   .number-item:last-child { border-bottom: none; }
   .number-item img {
-    width: 200px;
-    height: 220px;
+    width: 240px;
+    height: 427px;
     object-fit: cover;
+    object-position: center top;
     border-radius: 4px;
     display: block;
     flex-shrink: 0;
   }
   .num-content { display: flex; flex-direction: column; gap: 0.1rem; }
   .num-header {
-    display: flex; align-items: center; gap: 12px;
-    margin-bottom: 0.5rem;
+    display: flex; align-items: flex-start; gap: 12px;
+    margin-bottom: 0.75rem;
   }
   .num-badge {
     width: 36px; height: 36px; border-radius: 50%;
     background: var(--blush-light); border: 1.5px solid var(--blush);
     display: flex; align-items: center; justify-content: center;
     font-size: 14px; font-weight: 600; color: var(--blush-mid);
-    flex-shrink: 0;
+    flex-shrink: 0; margin-top: 2px;
   }
   .num-content h3 {
-    font-size: 16px; font-weight: 600;
+    font-size: 17px; font-weight: 600;
     color: var(--charcoal); line-height: 1.3; margin: 0;
   }
   .num-content p {
-    font-size: 15px; color: var(--mid);
-    line-height: 1.8; margin: 0; font-weight: 300;
+    font-size: 15.5px; color: var(--mid);
+    line-height: 1.85; margin: 0; font-weight: 300;
   }
-  @media (max-width: 600px) {
+  @media (max-width: 640px) {
     .number-item {
       grid-template-columns: 1fr;
+      gap: 1.25rem 0;
     }
     .number-item img {
-      width: 100%; height: 220px;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 9 / 16;
     }
   }
 
@@ -414,15 +420,16 @@
   /* ── IMAGE + TEXT LAYOUT ── */
   .image-text-block {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    grid-template-columns: 240px 1fr;
+    gap: 2.5rem;
     align-items: center;
     margin-bottom: 1.5rem;
   }
   .image-text-block img {
-    width: 100%;
-    height: 360px;
+    width: 240px;
+    height: 427px;
     object-fit: cover;
+    object-position: center;
     border-radius: 4px;
     display: block;
   }
@@ -433,10 +440,68 @@
     font-size: 17px; color: var(--mid);
     line-height: 1.9; font-weight: 300; margin: 0;
   }
-  @media (max-width: 620px) {
+  @media (max-width: 640px) {
     .image-text-block { grid-template-columns: 1fr; }
-    .image-text-block img { height: 260px; }
+    .image-text-block img { width: 100%; height: auto; aspect-ratio: 9 / 16; }
   }
+
+  /* ── FAQ ACCORDION ── */
+  .faq-section { margin: 0 0 2rem; }
+  .faq-section > h2 { margin-bottom: 1.25rem; }
+  .faq-item { border-bottom: 1px solid var(--faint); }
+  .faq-item:first-of-type { border-top: 1px solid var(--faint); }
+  .faq-question {
+    width: 100%; background: none; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 0; gap: 1rem; text-align: left;
+  }
+  .faq-question span {
+    font-family: var(--font); font-size: 15px; font-weight: 500;
+    color: var(--charcoal); line-height: 1.4;
+  }
+  .faq-arrow {
+    width: 22px; height: 22px; flex-shrink: 0;
+    border: 1.5px solid var(--faint); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.25s, border-color 0.2s;
+    font-size: 11px; color: var(--light);
+  }
+  .faq-item.open .faq-arrow { transform: rotate(180deg); border-color: var(--blush); color: var(--blush-mid); }
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.3s ease; }
+  .faq-item.open .faq-answer { max-height: 300px; padding-bottom: 1.1rem; }
+  .faq-answer p { font-size: 15px; color: var(--mid); line-height: 1.75; margin: 0; font-weight: 300; }
+
+  /* ── PRESS STRIP ── */
+  .press-strip {
+    background: var(--charcoal); border-radius: 4px;
+    padding: 1.1rem 2rem; margin: 1.75rem 0 0;
+    display: flex; align-items: center; justify-content: center;
+    flex-wrap: wrap; gap: 1rem 2rem;
+  }
+  .press-label {
+    font-size: 10px; font-weight: 400; letter-spacing: 0.14em;
+    text-transform: uppercase; color: rgba(255,255,255,0.35);
+    white-space: nowrap;
+  }
+  .press-logos { display: flex; align-items: center; flex-wrap: wrap; justify-content: center; gap: 1.5rem 2rem; }
+  .press-logo {
+    font-family: var(--font); font-size: 13px; font-weight: 600;
+    color: rgba(255,255,255,0.7); letter-spacing: 0.08em;
+    text-transform: uppercase; white-space: nowrap;
+  }
+  .press-logo.italic { font-style: italic; font-weight: 400; letter-spacing: 0.03em; font-size: 14px; text-transform: none; }
+
+  /* ── URGENCY LINE ── */
+  .urgency-line {
+    text-align: center; margin: 1.5rem 0 0;
+    font-size: 13px; font-weight: 500;
+    color: var(--blush-mid); letter-spacing: 0.04em;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+  }
+  .urgency-line::before, .urgency-line::after {
+    content: ''; width: 24px; height: 1px; background: var(--blush); opacity: 0.6;
+  }
+
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(16px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -469,14 +534,14 @@
     <img class="nav-logo" src="https://trysoluvia.com/cdn/shop/files/Soluvia_11.png?v=1759584339&width=500" alt="Soluvia" />
   </a>
   <span class="nav-tag">Wellness &amp; Daily Comfort · 5 min read</span>
-  <a href="#offer" class="nav-cta">Try It Now</a>
+  <a href="https://trysoluvia.com/products/instant-posture-lift" class="nav-cta">Try It Now</a>
 </nav>
 
 <!-- HERO -->
 <header class="hero">
   <div class="hero-kicker">Posture &amp; Wellness</div>
   <h1>Why You Keep Slouching<br><em>No Matter How Hard You Try</em></h1>
-  <p class="hero-deck">It's not willpower. It's not laziness. Here's what's really pulling your body forward — and how to finally do something about it.</p>
+  <p class="hero-deck">Neck tight by noon. Shoulders forward by 2pm. Back aching by dinner. You're not lazy. Here's what's actually going on.</p>
   <div class="author-block">
     <div class="author-avatar">
       <img src="https://i.pravatar.cc/150?img=47" alt="Sarah Mitchell" />
@@ -487,8 +552,6 @@
         Health &amp; lifestyle writer
         <span class="dot"></span>
         April 22, 2026
-        <span class="dot"></span>
-        5 min read
       </span>
     </div>
   </div>
@@ -499,7 +562,9 @@
 
   <p>You've told yourself to sit up straight hundreds of times. You set reminders. Tried new chairs. Rolled your shoulders back every time you caught yourself hunching. And by 2pm, you're curved over your screen again.</p>
 
-  <p>Here's what nobody explains clearly enough: <strong>this isn't a willpower problem. It's a physics problem.</strong> And once you understand that, everything about fixing it changes.</p>
+  <p style="font-size: 20px; font-weight: 600; color: var(--charcoal); line-height: 1.5; border-left: 4px solid var(--blush); padding-left: 1.25rem; margin: 1.75rem 0;">This isn't a willpower problem. It's a physics problem.</p>
+
+  <p>And once you understand that, everything about fixing it changes.</p>
 
   <div class="divider"><div class="divider-dot"></div></div>
 
@@ -508,7 +573,7 @@
     <div class="image-text-content">
       <span class="section-label">The real reason</span>
       <h2>Modern life is <em>physically</em><br>pulling your body forward</h2>
-      <p>Every hour at a desk, behind a wheel, or scrolling a phone shortens the muscles in your chest and weakens the ones across your upper back. Your body adapts — and over time it treats that rounded-forward position as the default. No amount of reminders overrides a pattern that's been years in the making.</p>
+      <p>Sitting at a desk, driving, or using your phone every hour tightens your chest muscles. It also weakens the muscles in your upper back. Your body adapts — and over time it treats that rounded-forward position as the default. No amount of reminders overrides a pattern that's been years in the making.</p>
       <p>What actually breaks the cycle isn't more effort. It's a <em>physical cue</em> — something that works with your body so your brain doesn't have to fight it all day.</p>
     </div>
   </div>
@@ -531,7 +596,7 @@
           <div class="num-badge">1</div>
           <h3>Gently Pull Your Shoulders Back Without Feeling Too Tight</h3>
         </div>
-        <p>A good posture corrector should instantly remind your body to sit and stand straighter without digging into your skin or feeling restrictive. If it's too aggressive, you will not want to wear it. The best support feels gentle, natural, and easy enough to wear during your normal routine.</p>
+        <p>A good posture corrector should remind you to sit and stand straighter. It shouldn't dig into your skin or feel tight. If it's too aggressive, you will not want to wear it. The best support feels gentle, natural, and easy enough to wear during your normal routine.</p>
       </div>
     </div>
 
@@ -542,7 +607,7 @@
           <div class="num-badge">2</div>
           <h3>Help Relieve Upper Back, Neck, and Shoulder Tension</h3>
         </div>
-        <p>Bad posture puts constant strain on the upper body, especially if you sit at a desk, look down at screens, drive often, or work long shifts on your feet. A posture corrector worth wearing should help reduce that daily pressure by supporting better alignment, so your body feels less tight, stiff, and overworked.</p>
+        <p>Poor posture strains your upper body. This is especially true if you sit at a desk, look down at screens, drive a lot, or stand for long shifts. A good posture corrector can ease daily pressure. It supports better alignment, making your body feel less tight, stiff, and overworked.</p>
       </div>
     </div>
 
@@ -553,7 +618,7 @@
           <div class="num-badge">3</div>
           <h3>Feel Comfortable Enough to Wear Throughout the Day</h3>
         </div>
-        <p>If it scratches, pinches, rolls up, or feels bulky under clothes, most people will stop using it. A posture corrector only works if you actually wear it. That is why comfort matters. Soft, lightweight, breathable materials make it easier to wear at work, at home, or while running errands without it becoming a distraction.</p>
+        <p>If it scratches, pinches, rolls up, or feels bulky under clothes, most people will stop using it. A posture corrector only works if you actually wear it. That is why comfort matters. Soft, lightweight, and breathable materials make it easy to wear. You can use it at work, at home, or while running errands. It won't distract you.</p>
       </div>
     </div>
 
@@ -562,20 +627,9 @@
       <div class="num-content">
         <div class="num-header">
           <div class="num-badge">4</div>
-          <h3>Fit Seamlessly Into Your Daily Routine</h3>
+          <h3>Fit Seamlessly Into Your Daily Routine — And Build Better Habits Over Time</h3>
         </div>
-        <p>Women with busy schedules do not need another complicated thing to manage. A posture corrector should be easy to put on, simple to adjust, and comfortable enough to wear while answering emails, helping patients, doing chores, or moving through a full workday. The easier it is to use, the more consistent you will be, and consistency is what creates results.</p>
-      </div>
-    </div>
-
-    <div class="number-item">
-      <img src="Image_6.png" alt="Woman sitting upright at desk with good posture" />
-      <div class="num-content">
-        <div class="num-header">
-          <div class="num-badge">5</div>
-          <h3>Train Better Posture Habits Over Time</h3>
-        </div>
-        <p>The real value is not just how it makes you feel the moment you put it on. It is how it helps retrain your body to recognize healthier posture throughout the day. A quality posture corrector helps reinforce proper alignment over time, so standing taller starts to feel more natural and less forced.</p>
+        <p>Women with busy schedules do not need another complicated thing to manage. A posture corrector should be easy to wear and simple to adjust. The more natural it feels to use every day, the more you'll stick with it. Consistency helps retrain your body to stay upright without even thinking.</p>
       </div>
     </div>
 
@@ -589,19 +643,21 @@
   <div class="comparison-strip">
     <div class="comp-card">
       <span class="comp-tag">Most options out there</span>
-      <div class="comp-title">The rigid brace or figure-8 strap</div>
-      <div class="comp-price">$15 – $40 · Usually Amazon</div>
+      <div class="comp-title">The Rigid Brace or Smart Device</div>
+      <div class="comp-price">$15 – $225 · Amazon or app-based</div>
       <ul class="comp-list con-list">
-        <li>Digs into underarms within an hour</li>
-        <li>Visible under fitted clothing</li>
-        <li>Too stiff for desk or all-day wear</li>
-        <li>Heat and sweat buildup</li>
+        <li>Rigid construction digs in and causes discomfort</li>
+        <li>Bulky profile shows under everyday clothing</li>
+        <li>Smart devices only tell you to fix posture — they don't actually help</li>
+        <li>Some smart devices vibrate or shock you as a reminder</li>
+        <li>Heat buildup or adhesive irritation with daily use</li>
       </ul>
     </div>
     <div class="comp-card winner">
       <span class="comp-tag">What to look for instead</span>
-      <div class="comp-title">The soft daily support corrector</div>
-      <div class="comp-price">$49 – $80 · Designed for real daily life</div>
+      <div class="comp-title">Instant Posture Lift</div>
+      <div class="comp-price">$49 – $99 · Designed for real daily life</div>
+      <div style="font-size: 13px; color: var(--blush-mid); font-weight: 500; margin-bottom: 0.75rem; letter-spacing: 0.02em;">★★★★★ &nbsp;4.8 · 200+ verified reviews</div>
       <ul class="comp-list pro-list">
         <li>Comfortable enough to forget you're wearing it</li>
         <li>Invisible under tees, blouses, and layers</li>
@@ -624,13 +680,74 @@
   <div class="featured-block">
     <div class="featured-badge">What good actually feels like</div>
     <h2>Less collapsed. More held up.<br>More like yourself.</h2>
-    <p>Women who find the right posture corrector don't describe it as "fixing their posture." They describe feeling more confident in their clothes, less tense at the end of the day, and more upright without having to think about it. That's the real outcome — a daily reset, not a medical transformation.</p>
-    <div class="criteria-pills">
-      <span class="pill">Comfortable from first wear</span>
-      <span class="pill">Invisible under real clothes</span>
-      <span class="pill">Gentle daily cue</span>
-      <span class="pill">Fits real bodies</span>
-      <span class="pill">Risk-free to try</span>
+    <p>Women who find the right posture corrector don't describe it as "fixing their posture." They feel more confident in their clothes. They are less tense at the end of the day. They sit and stand more upright without even thinking about it. That's the real outcome — a daily reset, not a medical transformation.</p>
+  </div>
+
+  <div class="divider"><div class="divider-dot"></div></div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <span class="section-label">Common questions</span>
+    <h2>Before You Buy — <em>Honest Answers</em></h2>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>Will it dig into my underarms or rub my skin raw?</span>
+        <div class="faq-arrow">▾</div>
+      </button>
+      <div class="faq-answer">
+        <p>This is the number one complaint about cheap posture braces — and for good reason. Most use rigid straps with hard edges that cut into the underarm area within an hour. A well-designed corrector uses soft, padded materials that sit smoothly against the skin. If a product has hundreds of reviews mentioning underarm rubbing, that's not a sizing issue — it's a design flaw. The Instant Posture Lift is specifically built to avoid this.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>Will it actually fit my body — I'm between sizes and have a fuller bust?</span>
+        <div class="faq-arrow">▾</div>
+      </button>
+      <div class="faq-answer">
+        <p>Fit is where most posture correctors fail women with fuller busts or non-standard sizing. Generic one-size designs compress the chest, sit unevenly, and slip out of place. Look for fully adjustable straps with a real range of motion — not just a small/medium/large label. The Instant Posture Lift is adjustable across a genuine range of body types, and it works independently of your bra size.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>Is this just a cheap Amazon brace with better marketing?</span>
+        <div class="faq-arrow">▾</div>
+      </button>
+      <div class="faq-answer">
+        <p>Fair question — the category is full of rebranded commodity products. The difference comes down to materials, construction, and wearability. A $15 brace is made to look good in a photo. A product designed for daily wear is built to feel good after hour four. Soft breathable fabric, flat seams, and a low-profile design are what separate something you'll actually wear from something you'll return after three days.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>Will it show through my clothes at work or in public?</span>
+        <div class="faq-arrow">▾</div>
+      </button>
+      <div class="faq-answer">
+        <p>Bulk and visible strap lines are deal-breakers for daily use — and rightfully so. If you can see it under a fitted top, you won't wear it anywhere that matters. The Instant Posture Lift is designed with a slim, smooth profile that sits flat under tees, blouses, and everyday layers without creating visible lines or adding bulk around the shoulders.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>What if it doesn't work for me — can I return it?</span>
+        <div class="faq-arrow">▾</div>
+      </button>
+      <div class="faq-answer">
+        <p>You can't know if a posture corrector works until you've worn it through a real day — that's just the nature of the category. Any brand confident in their product makes the trial risk-free. The Instant Posture Lift comes with a 30-day guarantee. If it's not the most comfortable posture support you've tried, return it. No complicated process, no fine print.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>How long before I actually notice a difference?</span>
+        <div class="faq-arrow">▾</div>
+      </button>
+      <div class="faq-answer">
+        <p>Most women notice a difference the moment they put it on — an immediate feeling of being more upright and supported. That's the short-term effect. The longer-term benefit — your body starting to hold better posture on its own — develops gradually over weeks of consistent wear. Start with 20–30 minutes a day and build from there. Pair it with regular movement breaks and you'll notice the cumulative effect within a few weeks.</p>
+      </div>
     </div>
   </div>
 
@@ -638,18 +755,34 @@
 
   <!-- OFFER -->
   <div class="offer-section" id="offer">
-    <h2>Try the Instant Posture Lift</h2>
-    <p>Soft, breathable, and designed to sit invisibly under real clothes. Adjustable support for a range of body types. A gentle upper-back cue that helps you feel more upright from the moment you put it on.</p>
+    <h2>Here Is What I Recommend</h2>
+    <p style="font-style: italic; color: var(--mid); font-size: 16px; margin-bottom: 1.25rem;">That's exactly what I found when I came across this.</p>
+    <p>If you want a posture corrector for everyday use, try the Soluvia Instant Posture Lift. Soft, discreet, easy to wear, and backed by a 30-day guarantee.</p>
+    <p style="font-size: 15px; color: var(--mid); font-weight: 300; margin-bottom: 1.75rem;">This brace feels almost invisible. You won't feel any rubbing or bulk, and it won't show under your clothes.</p>
 
-    <div style="text-align: center; margin-bottom: 1.75rem;">
-      <a href="/products/instant-posture-lift" class="offer-btn offer-btn-filled" style="display:inline-block; padding: 14px 32px; font-size: 15px;">Shop the Instant Posture Lift</a>
+    <p style="font-size: 13px; font-style: italic; color: var(--blush-mid); text-align: center; margin-bottom: 0.6rem; font-weight: 400;">Special pricing available through this link.</p>
+
+    <div style="text-align: center; margin-bottom: 0.75rem;">
+      <a href="https://trysoluvia.com/products/instant-posture-lift" class="offer-btn offer-btn-filled" style="display:inline-block; padding: 14px 32px; font-size: 15px;">Shop the Instant Posture Lift</a>
     </div>
 
-    <div class="guarantee">
+    <div class="urgency-line">Most Women Instantly Feel the Difference on the First Wear</div>
+
+    <div class="press-strip">
+      <span class="press-label">As featured in</span>
+      <div class="press-logos">
+        <span class="press-logo italic">Healthline</span>
+        <span class="press-logo">GQ</span>
+        <span class="press-logo italic">Women's Health</span>
+        <span class="press-logo">CNN</span>
+      </div>
+    </div>
+
+    <div class="guarantee" style="margin-top: 1.5rem;">
       <div class="guarantee-icon">🤍</div>
       <div class="guarantee-text">
         <h4>30-day guarantee</h4>
-        <p>Try it for a full 30 days. If it's not the most comfortable, most wearable posture support you've tried — return it, no questions asked. We'd rather fix the category's trust problem than hide behind fine print.</p>
+        <p>Try it for a full 30 days. If it's not the comfiest posture support you've tried, return it—no questions asked. We'd rather fix the category's trust problem than hide behind fine print.</p>
       </div>
     </div>
   </div>
@@ -667,5 +800,13 @@
   Results vary by individual. For best results, pair with regular movement and ergonomic habits.</p>
 </footer>
 
+<script>
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+</script>
 </body>
 </html>
